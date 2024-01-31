@@ -1,12 +1,10 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
  
-export const config = {
-  runtime: 'nodejs',
-};
- 
-export default function handler(request: NextRequest) {
-  return NextResponse.json({
-    DATABASE_HOSTNAME: new URL(process.env.DATABASE_URL).hostname,
+export default function handler(
+  request: NextApiRequest,
+  response: NextApiResponse,
+) {
+  response.status(200).json({
+    DATABASE_HOSTNAME: new URL(process.env.DATABASE_URL).hostname
   });
 }
